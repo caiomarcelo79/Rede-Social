@@ -1,13 +1,13 @@
 import { Axios } from "axios"
 import Form from "./components/Form"
-import Pessoas from "./components/Pessoas"
+import Usuarios from "./components/Usuarios"
 
 function App() {
 
   return (
     <div>
       <Form/>
-      <Pessoas/>
+      <Usuarios/>
     </div>
   )
 }

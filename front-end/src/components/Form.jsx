@@ -5,36 +5,34 @@ import { redirect } from "react-router-dom"
 function Form() {
 
 
-  // axios.post("http://localhost:8080/pessoas/registro", )
 
-  const [objPessoa, setObjPessoa] = useState({
+  const [objUsuario, setObjUsuario] = useState({
     nome: "",
-    idade: 0
+    email: ""
   })
 
   function Digito(e) {
-    setObjPessoa({...objPessoa, [e.target.name]: e.target.value})
+    setObjUsuario({...objUsuario, [e.target.name]: e.target.value})
   }
 
-  function Registrar(){
-    axios.post("http://localhost:8080/pessoas/registro", objPessoa).then(()=>{
-      e.preventDefault()
-    }).then(()=>{
-      redirect("/")
-    })
+  function Submit(e){
+    e.preventDefault()
+    axios.post("http://localhost:8080/usuarios/registro", objUsuario)
+    location.reload()
+    
   }
 
   return (
     <div>
       <h1>Formulario</h1>
-      <h2>{JSON.stringify(objPessoa)}</h2>
-      <form>
+      <h2>{JSON.stringify(objUsuario)}</h2>
+      <form onSubmit={Submit}>
         <label>Nome: </label>
           <input onChange={Digito} type="text" name="nome"/>
-        <label>Idade: </label>
-          <input onChange={Digito} type="number" name="idade"/>
+        <label>Email: </label>
+          <input onChange={Digito} type="email" name="email"/>
         <br/><br/>
-        <button onClick={Registrar} >Confirme</button>
+        <button type="submit" >Confirme</button>
       </form>
 
     </div>
