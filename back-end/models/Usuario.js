@@ -1,5 +1,4 @@
 const db = require("../config/db")
-const app = require("../app")
 
 const Usuario = db.sequelize.define('usuarios', {
   nome: {
@@ -7,16 +6,17 @@ const Usuario = db.sequelize.define('usuarios', {
   },
   email: {
     type: db.Sequelize.STRING
+  },
+  nascimento:{
+    type: db.Sequelize.DATE
   }
 })
 
-if (app.bancoUsuarios == false) {
-  // Post.sync({force: true})
-  bancoUsuarios = true
-  console.log(bancoUsuarios)
+try {
+  const resultado = Usuario.sync()
+  console.log(resultado)
+} catch (error) {
+  console.log(error)
 }
-
-
-
 
 module.exports = Usuario

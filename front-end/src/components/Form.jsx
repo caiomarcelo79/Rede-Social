@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { redirect } from "react-router-dom"
+
 
 function Form() {
 
@@ -8,7 +8,8 @@ function Form() {
 
   const [objUsuario, setObjUsuario] = useState({
     nome: "",
-    email: ""
+    email: "",
+    nascimento: ""
   })
 
   function Digito(e) {
@@ -27,11 +28,15 @@ function Form() {
       <h1>Formulario</h1>
       <h2>{JSON.stringify(objUsuario)}</h2>
       <form onSubmit={Submit}>
-        <label>Nome: </label>
+        <label htmlFor="nome">Nome: </label>
           <input onChange={Digito} type="text" name="nome"/>
-        <label>Email: </label>
+          <br/><br/>
+        <label htmlFor="email">Email: </label>
           <input onChange={Digito} type="email" name="email"/>
-        <br/><br/>
+          <br/><br/>
+        <label htmlFor="nascimento">Data de Nascimento: </label>
+          <input onChange={Digito} type="date" name="nascimento"/>
+        <br/><br/><br/>
         <button type="submit" >Confirme</button>
       </form>
 

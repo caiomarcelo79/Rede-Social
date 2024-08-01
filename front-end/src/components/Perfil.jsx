@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 
-function Usuarios() {
+function Perfil() {
 
   const [usuario, setUsuario] = useState([])
 
@@ -13,9 +13,7 @@ function Usuarios() {
       console.log(response.data)
     })
   }, [])
-
-
-
+  
   
   return(
     <div>
