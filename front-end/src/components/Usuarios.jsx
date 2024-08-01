@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { redirect } from "react-router-dom"
 
 
 function Usuarios() {
