@@ -1,6 +1,8 @@
 import { Axios } from "axios"
 import Form from "./components/Form"
 import Usuarios from "./components/Usuarios"
+import Perfil from "./components/Perfil/Perfil"
+import { Outlet } from "react-router-dom"
 
 function App() {
 
@@ -8,6 +10,7 @@ function App() {
     <div>
       <Form/>
       <Usuarios/>
+      <Outlet/>
     </div>
   )
 }

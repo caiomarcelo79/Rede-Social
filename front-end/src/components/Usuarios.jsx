@@ -6,6 +6,7 @@ import { redirect } from "react-router-dom"
 function Usuarios() {
 
   const [usuario, setUsuario] = useState([])
+  var valor = null
 
   useEffect(()=>{
     axios.get("http://localhost:8080/usuarios")
@@ -15,20 +16,26 @@ function Usuarios() {
     })
   }, [])
 
-  function Acessar() {
-    window.location.href = {p.id}
-  }
 
+  const Acessar = ((id)=>{
+    window.location.href = ("/perfil/"+id)
+    valor = id
+    console.log("esse eh o valor: "+valor)
+    return valor
+  })
 
+  console.log(valor)
 
   
   return(
     <div>
       <h1>Usuarios</h1>
-      {usuario.map((p, index)=>(
+      {usuario.map((u, index)=>(
         <div key={index}>
-          <h3>{index+1}# Nome: {p.nome}</h3>
-          <h4><button onClick={Acessar}>Ver perfil</button></h4>
+          <h3>{index+1}# Nome: {u.nome}</h3>
+          <h4><button onClick={() => Acessar(u.id)}>Ver perfil</button></h4>
+          <a href="perfil">a</a>
+          
           <hr/>
         </div>
       ))}
