@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { redirect } from "react-router-dom"
 
 
 function Usuarios() {
@@ -14,6 +15,10 @@ function Usuarios() {
     })
   }, [])
 
+  function Acessar() {
+    window.location.href = {p.id}
+  }
+
 
 
   
@@ -23,8 +28,8 @@ function Usuarios() {
       {usuario.map((p, index)=>(
         <div key={index}>
           <h3>{index+1}# Nome: {p.nome}</h3>
-          <h4><a href={p.id}><button>Ver perfil</button></a></h4>
-          <hr />
+          <h4><button onClick={Acessar}>Ver perfil</button></h4>
+          <hr/>
         </div>
       ))}
     </div>

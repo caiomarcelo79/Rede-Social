@@ -13,7 +13,7 @@ function Perfil() {
       console.log(response.data)
     })
   }, [])
-  
+
   
   return(
     <div>
@@ -29,4 +29,4 @@ function Perfil() {
   )
 }
 
-export default Usuarios
+export default Perfil
