@@ -25,7 +25,6 @@ function Form() {
   return (
     <div>
       <h1>Formulario</h1>
-      <h2>{JSON.stringify(objUsuario)}</h2>
       <form onSubmit={Submit}>
         <label htmlFor="nome">Nome: </label>
           <input onChange={Digito} type="text" name="nome"/>

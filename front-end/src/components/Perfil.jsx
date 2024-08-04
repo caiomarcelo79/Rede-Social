@@ -22,8 +22,16 @@ function Perfil() {
   }
 
   const usuario = resposta.usuario
-  
 
+
+  const formatarData = (data) => {
+    const partes = data.slice(0, 10).split("-");
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  };
+
+  const dataNascimentoFormatada = formatarData(usuario.nascimento);
+
+  console.log(dataNascimentoFormatada)
   
   return(
     <div>
@@ -31,9 +39,9 @@ function Perfil() {
 
 
         <h1>Olá, meu nome é {usuario.nome}</h1>
-        <h3>Nasci do dia {usuario.nascimento.trim(10)}</h3>
+        <h3>Nasci do dia {dataNascimentoFormatada}</h3>
+        <h3>Meu email para contato é {usuario.email}</h3>
       
-      <h2>{JSON.stringify(usuario)}</h2>
     </div>
   )
 }

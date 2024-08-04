@@ -44,6 +44,8 @@ app.post("/usuarios/registro", (req, res) => {
   })
 })
 
+
+// Encontra usuarios a partir do id passado pelo parametro de url
 app.get("/usuarios/find/:id", (req, res) => {
   const id = req.params.id;
 
@@ -62,6 +64,10 @@ app.get("/usuarios/find/:id", (req, res) => {
     res.status(500).json({ error: "Erro ao tentar encontrar o id" });
   });
 });
+
+
+
+
 
 app.listen(8080, () => {
   console.log("Servidor rodando na porta 8080")
