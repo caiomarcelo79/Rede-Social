@@ -19,7 +19,6 @@ function Form() {
   function Submit(e){
     e.preventDefault()
     axios.post("http://localhost:8080/usuarios/registro", objUsuario)
-    location.reload()
     
   }
 

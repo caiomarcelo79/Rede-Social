@@ -8,28 +8,53 @@ import axios from 'axios'
 
 
 
-var usuario = []
+
+const Root = ()=>{
+
+  const [usuario, setUsuario] = useState([])
+  const [router, setRouter] = useState(null)
 
 
-axios.get("http://localhost:8080/usuarios")
-.then((response)=>{
-  usuario = response.data
-  console.log(response.data)
-})
+  useEffect(()=>{
+    axios.get("http://localhost:8080/usuarios")
+    .then((response)=>{
+      setUsuario(response.data)
+      console.log(response.data)
+    })
+  }, [])
 
-const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <App/>,
-    },
-    usuario.map((u)=>({
-      path: `/perfil/${u.id}`,
-      element: <Perfil/>
-    }))
-])
+  useEffect(() => {
+
+    if (usuario.length > 0) {
+      var routes = [
+
+        {
+          path: "/",
+          element: <App/>,
+        },
+        ...usuario.map((u)=>({
+          path: `/perfil/${u.id}`,
+          element: <Perfil/>,
+        })),
+      ]
+
+      const newRouter = createBrowserRouter(routes)
+      setRouter(newRouter)
+    }
+
+  }, [usuario]);
+
+  if (!router) {
+    return <div>Carregando...</div>;
+  }
+  return(
+    <RouterProvider router={router}/>
+  )
+
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Root/>
   </React.StrictMode>,
 )

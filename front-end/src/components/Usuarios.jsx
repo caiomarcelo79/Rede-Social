@@ -13,7 +13,7 @@ function Usuarios() {
       setUsuario(response.data)
       console.log(response.data)
     })
-  }, [])
+  }, [usuario])
 
 
   const Acessar = ((id)=>{
@@ -33,7 +33,6 @@ function Usuarios() {
         <div key={index}>
           <h3>{index+1}# Nome: {u.nome}</h3>
           <h4><button onClick={() => Acessar(u.id)}>Ver perfil</button></h4>
-          <a href="perfil">a</a>
           
           <hr/>
         </div>
