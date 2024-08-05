@@ -25,7 +25,7 @@ const Root = ()=>{
 
   useEffect(() => {
 
-    if (usuario.length > 0) {
+    if (usuario.length >= 0) {
       var routes = [
 
         {

@@ -4,6 +4,7 @@ const Usuario = require('./models/Usuario')
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const { where } = require("sequelize")
+const Postagem = require("./models/Postagem")
 
 
 // Middleware
@@ -32,6 +33,7 @@ app.get("/usuarios", (req, res) => {
 // Registra os usuarios
 app.post("/usuarios/registro", (req, res) => {
   Usuario.create({
+    nickname: req.body.nickname,
     nome: req.body.nome,
     email: req.body.email,
     nascimento: req.body.nascimento
@@ -43,7 +45,6 @@ app.post("/usuarios/registro", (req, res) => {
     res.status(500).json({ error: "Erro ao registrar usuario" })
   })
 })
-
 
 // Encontra usuarios a partir do id passado pelo parametro de url
 app.get("/usuarios/find/:id", (req, res) => {
@@ -65,6 +66,31 @@ app.get("/usuarios/find/:id", (req, res) => {
   });
 });
 
+
+// Lista todas as postagens
+app.get("/postagens", (req, res) => {
+  Postagem.findAll().then((postagem) => {
+    return res.json(postagem)
+  }).catch((err) => {
+    res.status(500).json({ error: "Erro ao buscar postagens" })
+  })
+})
+
+// Registra as postagens
+app.post("/postagens/registro", (req, res) => {
+  Postagem.create({
+    usuarionickname: req.body.usuarionickname,
+    titulo: req.body.titulo,
+    conteudo: req.body.conteudo,
+    datapostagem: Date.now()
+  }).then(() => {
+    console.log("Postagem registrada com sucesso")
+    res.status(201).json({ message: "Postagem registrada com sucesso" })
+  }).catch((err) => {
+    console.log("Erro ao registrar usuario")
+    res.status(500).json({ error: "Erro ao registrar postagem" })
+  })
+})
 
 
 

@@ -6,11 +6,7 @@ function Form() {
 
 
 
-  const [objUsuario, setObjUsuario] = useState({
-    nome: "",
-    email: "",
-    nascimento: ""
-  })
+  const [objUsuario, setObjUsuario] = useState([])
 
   function Digito(e) {
     setObjUsuario({...objUsuario, [e.target.name]: e.target.value})
@@ -24,8 +20,12 @@ function Form() {
 
   return (
     <div>
-      <h1>Formulario</h1>
+      <h1>Formulário</h1>
+      <h3>{JSON.stringify(objUsuario)}</h3>
       <form onSubmit={Submit}>
+        <label htmlFor="nickname">Nickname: </label>
+          <input onChange={Digito} type="text" name="nickname"/>
+          <br/><br/>
         <label htmlFor="nome">Nome: </label>
           <input onChange={Digito} type="text" name="nome"/>
           <br/><br/>
